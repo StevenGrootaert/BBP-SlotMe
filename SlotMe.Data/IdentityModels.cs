@@ -1,4 +1,6 @@
-﻿using System.Security.Claims;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,6 +18,12 @@ namespace SlotMe.Data
             // Add custom user claims here
             return userIdentity;
         }
+
+        [Required]
+        public string NameLast { get; set; }
+        [Required]
+        public string NameFirst { get; set; }
+        public string UserBio{ get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
