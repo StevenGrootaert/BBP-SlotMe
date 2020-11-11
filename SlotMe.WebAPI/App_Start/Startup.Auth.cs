@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using SlotMe.WebAPI.Providers;
 using SlotMe.WebAPI.Models;
+using SlotMe.Data;
 
 namespace SlotMe.WebAPI
 {
