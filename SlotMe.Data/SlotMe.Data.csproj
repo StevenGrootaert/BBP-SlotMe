@@ -87,8 +87,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Availability.cs" />
+    <Compile Include="Gig.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Talent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

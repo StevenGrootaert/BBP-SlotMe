@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using SlotMe.Data;
 using SlotMe.WebAPI.Models;
 using SlotMe.WebAPI.Providers;
 using SlotMe.WebAPI.Results;

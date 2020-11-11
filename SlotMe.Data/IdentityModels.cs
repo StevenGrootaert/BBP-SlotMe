@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Globalization;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -36,6 +39,37 @@ namespace SlotMe.Data
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+    public DbSet<Talent> Talents { get; set; }
+    public DbSet<Gig> Gigs { get; set; }
+    public DbSet<Availability> Slots { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder
+            .Conventions
+            .Remove<PluralizingTableNameConvention>();
+
+            modelBuilder
+                .Configurations
+                .Add(new IdentityUserLoginConfiguration())
+                .Add(new IdentityUserRoleConfiguration());
+        }
+    }
+
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(iul => iul.UserId);
+        }
+    }
+
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        {
+            HasKey(iur => iur.UserId);
         }
     }
 }
