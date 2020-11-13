@@ -26,7 +26,7 @@ namespace SlotMe.Data
         public string NameLast { get; set; }
         [Required]
         public string NameFirst { get; set; }
-        public string UserBio{ get; set; }
+        public string UserBio { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

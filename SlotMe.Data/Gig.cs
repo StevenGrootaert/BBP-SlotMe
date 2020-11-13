@@ -13,12 +13,13 @@ namespace SlotMe.Data
         [Key]
         public int GigId { get; set; }
 
-        [ForeignKey("Talent Ref")]
+        [ForeignKey("TalentRef")]
         public int TalentId { get; set; }
         public virtual Talent TalentRef { get; set; } 
 
-        [ForeignKey("Artist")]
-        public Guid UserId { get; set; }
+        [ForeignKey("ArtistId")]
+        // changed from Guid to string?
+        public string UserId { get; set; }
         public virtual ApplicationUser ArtistId { get; set; }
 
         [Required]
