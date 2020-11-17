@@ -48,6 +48,8 @@ namespace SlotMe.WebAPI.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // add the additional details here from IdentityModels
         [Required]
         public string NameLast { get; set; }
         [Required]
