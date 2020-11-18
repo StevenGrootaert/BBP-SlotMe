@@ -328,8 +328,8 @@ namespace SlotMe.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            // add items additional details from IdentityModels here
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, NameLast = model. NameLast, NameFirst = model.NameFirst };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
