@@ -1,4 +1,4 @@
-﻿using Microsoft.Exchange.WebServices.Data;
+﻿
 using Microsoft.Graph;
 using SlotMe.Data;
 using SlotMe.Models;
@@ -12,51 +12,53 @@ namespace SlotMe.Services
 {
     public class SlotService
     {
-        private readonly UserId _userId;
-        public SlotService(UserId userId)
+        private readonly string _userId;
+        public SlotService(string userId)
         {
             _userId = userId;
         }
-    }
-    public bool CreateTimeSlot(SlotCreate model)
-    {
-        var entity =
-            new Slot()
-            {
-                //SlotId = _userId,
-                TimeSlot = model.TimeSlotId, //model.TimeSlot?
-                AvailableStart = model.AvailableStart,
-                AvailableEnd= model.AvailableEnd
-            };
 
-        using (var ctx = new ApplicationDbContext())
+        public bool CreateSlot(SlotCreate model)
         {
-            ctx.Slots.Add(entity);
-            return ctx.SaveChanges() == 1;
+            var entity =
+                new Slot()
+                {
+                    UserId = _userId,
+                    SlotId = model.SlotId, //model.TimeSlot?
+                    SlotStart = model.SlotStart,
+                    SlotEnd = model.SlotEnd
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Slots.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
         }
-    }
-    public IEnumerable<SlotListItem>GetSlots()
-    {
-       
+        public IEnumerable<SlotListItem> GetSlots()
         {
+
+
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Slots
-                        .Where(e => e.TimeSlot == TimeSlotId)
+                        .Where(e => e.UserId == _userId)
                         .Select(
                             e =>
                                 new SlotListItem
                                 {
                                     SlotId = e.SlotId,
-                                    AvailableStart = e.AvailableStart,
-                                    AvailableEnd = e.AvailableEnd
+                                    SlotStart = e.SlotStart,
+                                    SlotEnd = e.SlotEnd
                                 }
                         );
 
                 return query.ToArray();
             }
+
         }
+
     }
 }
