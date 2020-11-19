@@ -10,9 +10,9 @@ namespace SlotMe.Models
     public class SlotCreate
     {
         [Required]
-        public string SlotId { get; set; }
-        public DateTime AvailableStart { get; set; }
-        public DateTime AvailableEnd { get; set; }
+        public int SlotId { get; set; }
+        public DateTime SlotStart { get; set; }
+        public DateTime SlotEnd { get; set; }
         
     }
 }

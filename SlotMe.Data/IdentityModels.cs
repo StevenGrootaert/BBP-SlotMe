@@ -42,7 +42,7 @@ namespace SlotMe.Data
         }
     public DbSet<Talent> Talents { get; set; }
     public DbSet<Gig> Gigs { get; set; }
-    public DbSet<Availability> Slots { get; set; }
+    public DbSet<Slot> Slots { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -11,14 +11,14 @@ namespace SlotMe.Data
     public class Slot
     {
         [Key]
-        public string TimeSlotId { get; set; }
+        public int SlotId { get; set; }
         [ForeignKey("ArtistId")]
         public string UserId { get; set; }
         public virtual ApplicationUser ArtistId { get; set; }
-        [Required]
-        public DateTime AvailableStart { get; set; }
-        [Required]
-        public DateTime AvailableEnd { get; set; }
-     
+        
+        public DateTime SlotStart { get; set; }
+        
+        public DateTime SlotEnd { get; set; }
+        
     }
 }

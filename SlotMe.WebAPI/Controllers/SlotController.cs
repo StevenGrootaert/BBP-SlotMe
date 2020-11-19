@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using SlotMe.Models;
 using SlotMe.Services;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,27 @@ namespace SlotMe.WebAPI.Controllers
     {
         private SlotService CreateSlotService()
         {
-            var timeSlotId = Guid.Parse(User.Identity.GetUserId());
-            var slotService = new SlotService(timeSlotId);
+            var userId = User.Identity.GetUserId();
+            var slotService = new SlotService(userId);
             return slotService;
         }
         public IHttpActionResult Get()
         {
             SlotService slotService = CreateSlotService();
             var slot = slotService.GetSlots();
-            return Ok(slots);
+            return Ok(slot);
+        }
+        public IHttpActionResult Post(SlotCreate slot)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateSlotService();
+
+            if (!service.CreateSlot(slot))
+                return InternalServerError();
+
+            return Ok();
         }
     }
 }
