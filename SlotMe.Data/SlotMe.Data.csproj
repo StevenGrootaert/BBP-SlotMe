@@ -87,7 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Availability.cs" />
     <Compile Include="Gig.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202011122251297_InitialCreate.cs" />
