@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202011130016585_InitialMigration.designer.cs">
       <DependentUpon>202011130016585_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011200140383_Mark Majors.cs" />
+    <Compile Include="Migrations\202011200140383_Mark Majors.designer.cs">
+      <DependentUpon>202011200140383_Mark Majors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Slot.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011130016585_InitialMigration.resx">
       <DependentUpon>202011130016585_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011200140383_Mark Majors.resx">
+      <DependentUpon>202011200140383_Mark Majors.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
