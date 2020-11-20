@@ -24,7 +24,9 @@ namespace SlotMe.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
+        public object Gig { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

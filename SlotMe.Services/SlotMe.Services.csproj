@@ -57,11 +57,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GigServices1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SlotMe.Data\SlotMe.Data.csproj">
+      <Project>{e30205b4-18c5-4dd2-b30c-8e6053b38bea}</Project>
+      <Name>SlotMe.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlotMe.Models\SlotMe.Models.csproj">
+      <Project>{ce8991b5-b551-4803-af94-110cdca2a8f0}</Project>
+      <Name>SlotMe.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
