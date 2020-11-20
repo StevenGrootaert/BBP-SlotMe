@@ -34,15 +34,36 @@ namespace SlotMe.Services
             }
         }
 
-        // see all the talents that belong to a specific user.. is that by the user loged in or can we search an artict and see by that id?
+        // need to be able to see all talents regardless of user ID. 
+        public IEnumerable<TalentListItem> GetAllTalents()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Talents
+                .Select(
+                    t => new TalentListItem
+                    {
+                        //add user ID?? 
+                        //ArtistId = e.ArtistId . can we display the name and not the int of the id number?
+                        TalentId = t.TalentId,
+                        TalentTitle = t.TalentTitle,
+                        TalentDescription = t.TalentDescription,
+                    }
+                    );
+                return query.ToArray();
+            }
+        } 
+
+        // see all the talents that belong to a specific user.. is that by the user loged in or can we search an artist and see by that id?
         public IEnumerable<TalentListItem> GetTalents()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Talents.Where(e => e.UserId == _userId)
+                var query = ctx.Talents
+                    .Where(e => e.UserId == _userId)
                     .Select(
                     e => new TalentListItem
-                    {
+                    { 
                         TalentId = e.TalentId,
                         TalentTitle = e.TalentTitle,
                         TalentDescription = e.TalentDescription,

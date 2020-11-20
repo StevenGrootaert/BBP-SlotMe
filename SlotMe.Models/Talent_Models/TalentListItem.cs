@@ -12,6 +12,8 @@ namespace SlotMe.Models
         public string TalentTitle { get; set; }
         public string TalentDescription { get; set; }
 
+        // public int ArtistId { get; set } // it says this is void? it's one of the foreign keys
+
         // are we going to need the Artist Id displayed here? 
     }
 }

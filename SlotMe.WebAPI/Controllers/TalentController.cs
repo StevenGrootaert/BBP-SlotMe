@@ -22,12 +22,6 @@ namespace SlotMe.WebAPI.Controllers
             return talentService;
         }
 
-        public IHttpActionResult Get()
-        {
-            TalentService talentService = CreateTalentService();
-            var talents = talentService.GetTalents();
-            return Ok(talents);
-        }
 
         public IHttpActionResult Post(TalentCreate talent)
         {
@@ -40,6 +34,12 @@ namespace SlotMe.WebAPI.Controllers
                 return InternalServerError();
 
             return Ok();
+        }
+        public IHttpActionResult Get() // get all talents regardless of Id ***does anything go here inside the method?
+        {
+            TalentService talentService = CreateTalentService();
+            var talents = talentService.GetTalents();
+            return Ok(talents);
         }
 
         // Get talent by Id .. we can use this to get the talent when making a Gig?
