@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Graph;
+﻿using Microsoft.Graph;
 using SlotMe.Data;
 using SlotMe.Models;
 using System;

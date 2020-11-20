@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Graph;
+using SlotMe.Data;
+using SlotMe.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,49 +9,48 @@ using System.Threading.Tasks;
 
 namespace SlotMe.Services
 {
-    public class GigServices
+    public class GigService
     {
-         {
-        //private readonly int PostID;
-        //public PostServices(int commentID)
-        //{
-        //    PostID = commentID;
-        //}
-
+        private
+        /*
+        public object ID { get; private set; }
+        public object Talent { get; private set; }
+        public object Time { get; private set; }
+        */
         public bool CreateGig(GigCreate model)
         {
             var entity =
                 new Gig()
                 {
-                    UserID = model.UserID,
-                    Title = model.Title,
-                    Text = model.Text
+                    UserId = model.UserID,
+                    Talent = model.Talent,
+                    Time = model.Time
                     //Author = model.Author
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Posts.Add(entity);
-                var testing = ctx.SaveChanges();
-                return true;
+                //object p = ctx.Gig.Add(entity);
+                ctx.Gig.Add(entity);
+                return ctx.SaveChanges() == 1;
+                
             }
         }
 
-        public IEnumerable<PostListItem> GetGigs(int id)
+        public IEnumerable<GigListItem> GetGig(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Posts
-                        .Where(e => e.ID == id)
+                        .Gig
                         .Select(
                             e =>
-                                new PostListItem
+                                new GigListItem
                                 {
                                     ID = e.ID,
-                                    Title = e.Title,
-                                    Author = e.Author
+                                    Talent = e.Talent,
+                                    Time = e.Time
                                 }
                         );
 
@@ -56,22 +58,21 @@ namespace SlotMe.Services
             }
         }
 
-        public GigServices GetPostById(int id)
+        public GigService GetPostById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Posts
-                        .Single(e => e.ID == id);
+                        .Gig;
                 return
-                    new GigServices
+                    new GigService
                     {
                         ID = entity.ID,
-                        Title = entity.Title,
-                        Text = entity.Text,
-                        Author = entity.Author
+                        Talent = entity.Talent,
+                        Time = entity.Time
                     };
             }
         }
     }
+}

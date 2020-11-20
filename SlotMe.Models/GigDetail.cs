@@ -14,5 +14,5 @@ namespace SlotMe.Models
         public string Time { get; set; }
 
         public virtual User User { get; set; }
-    }2
+    }
 }
