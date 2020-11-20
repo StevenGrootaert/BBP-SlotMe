@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.CompilerServices;
+using Microsoft.AspNet.Identity;
 using SlotMe.Data;
 using SlotMe.Models;
 using SlotMe.Services;
@@ -12,37 +13,37 @@ using System.Web.Http.ModelBinding;
 
 namespace SlotMe.WebAPI.Controllers
 {
+    [Authorize]
     public class GigController : ApiController
     {
-        private static readonly object id;
-        GigServices gigService = new GigServices();
-            return private object gig;
-
-        Ok(Gig);
-
-        public object Gig { get => gig; set => gig = value; }
-    }
-
-    public IHttpActionResult Gig(GigCreate gig)
-    {
-        if (ModelState.IsValid)
+        private GigService CreateGigService()
         {
-            GigServices gigService = GigCreate();
+            var userId = User.Identity.GetUserId();
+            var gigService = new GigService();
+            return gigService;
+        }
+        public IHttpActionResult Get(int id)
+        {
+            GigService gigService = CreateGigService();
+            var gig = gigService.GetGig(id);
+            return Ok(gig);
+        }
 
-            if (HostServices.GigCreate(gig))
-            {
-            }
-            else
+        public IHttpActionResult Post(GigCreate gig)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            GigService gigService = CreateGigService();
+
+            if (!gigService.CreateGig(gig))
                 return InternalServerError();
 
             return Ok();
         }
-        return BadRequest(ModelState);
+
+
     }
-    private GigServices CreateGigService()
-    {
-        var userID = Guid.Parse(userID.Identity.GetUserId());
-        var postService = new GigServices();
-        return postService;
-    }
+
+
 }
