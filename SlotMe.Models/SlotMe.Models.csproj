@@ -63,6 +63,13 @@
     <Compile Include="GigDetail.cs" />
     <Compile Include="GigCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlotCreate.cs" />
+    <Compile Include="SlotListItem.cs" />
+    <Compile Include="Talent_Models\TalentDetail.cs" />
+    <Compile Include="Talent_Models\TalentCreate.cs" />
+    <Compile Include="Talent_Models\TalentEdit.cs" />
+    <Compile Include="Talent_Models\TalentListItem.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

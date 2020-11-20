@@ -87,13 +87,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GigData.cs" />
+    <Compile Include="Gig.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202011122251297_InitialCreate.cs" />
+    <Compile Include="Migrations\202011122251297_InitialCreate.designer.cs">
+      <DependentUpon>202011122251297_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011130016585_InitialMigration.cs" />
+    <Compile Include="Migrations\202011130016585_InitialMigration.designer.cs">
+      <DependentUpon>202011130016585_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slot.cs" />
+    <Compile Include="Talent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011122251297_InitialCreate.resx">
+      <DependentUpon>202011122251297_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011130016585_InitialMigration.resx">
+      <DependentUpon>202011130016585_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

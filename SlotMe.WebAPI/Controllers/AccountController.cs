@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using SlotMe.Data;
 using SlotMe.WebAPI.Models;
 using SlotMe.WebAPI.Providers;
 using SlotMe.WebAPI.Results;
@@ -327,8 +328,8 @@ namespace SlotMe.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            // add items additional details from IdentityModels here
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, NameLast = model. NameLast, NameFirst = model.NameFirst };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
