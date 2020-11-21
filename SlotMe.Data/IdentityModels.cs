@@ -35,14 +35,16 @@ namespace SlotMe.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
+        public object Gig { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
     public DbSet<Talent> Talents { get; set; }
     public DbSet<Gig> Gigs { get; set; }
-    public DbSet<Availability> Slots { get; set; }
+    public DbSet<Slot> Slots { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
