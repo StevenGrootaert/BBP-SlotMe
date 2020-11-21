@@ -44,7 +44,9 @@ namespace SlotMe.Services
                     t => new TalentListItem
                     {
                         //add user ID?? 
-                        //ArtistId = e.ArtistId . can we display the name and not the int of the id number?
+                        NameFirst = t.ArtistId.NameFirst,
+                        NameLast = t.ArtistId.NameLast,
+                        UserId = t.UserId, //. can we display the name and not the int of the id number?
                         TalentId = t.TalentId,
                         TalentTitle = t.TalentTitle,
                         TalentDescription = t.TalentDescription,

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using SlotMe.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,10 @@ namespace SlotMe.Models
 {
     public class GigListItem
     {
-        public int ID { get; set; }
-        public string Talent { get; set; }
+        public int GigId { get; set; }
+        public int TalentId { get; set; }
+        // public in TalentRef { get; set; }
+        public virtual ApplicationUser ArtistId { get; set; }
 
-        public virtual User User { get; set; }
     }
 }

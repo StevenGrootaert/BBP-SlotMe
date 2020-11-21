@@ -38,7 +38,7 @@ namespace SlotMe.WebAPI.Controllers
         public IHttpActionResult Get() // get all talents regardless of Id ***does anything go here inside the method?
         {
             TalentService talentService = CreateTalentService();
-            var talents = talentService.GetTalents();
+            var talents = talentService.GetAllTalents();
             return Ok(talents);
         }
 
