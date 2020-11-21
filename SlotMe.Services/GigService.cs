@@ -11,29 +11,30 @@ namespace SlotMe.Services
 {
     public class GigService
     {
-        private
-        /*
-        public object ID { get; private set; }
-        public object Talent { get; private set; }
-        public object Time { get; private set; }
-        */
+        private readonly string _userId;
+        public GigService(string userId)
+        {
+            _userId = userId;
+        }
+       
         public bool CreateGig(GigCreate model)
         {
             var entity =
                 new Gig()
                 {
-                    UserId = model.UserID,
-                    Talent = model.Talent,
-                    Time = model.Time
+                    UserId = _userId,
+                    GigId = model.GigId,
+                    TalentId = model.TalentRef,
+                    ArtistId = model.ArtistId,
+                    GigStart = model.GigStart,
+                    GigEnd = model.GigEnd
                     //Author = model.Author
                 };
-
-            using (var ctx = new ApplicationDbContext())
+        using (var ctx = new ApplicationDbContext())
             {
                 //object p = ctx.Gig.Add(entity);
-                ctx.Gig.Add(entity);
+                ctx.Gigs.Add(entity);
                 return ctx.SaveChanges() == 1;
-                
             }
         }
 
@@ -41,37 +42,66 @@ namespace SlotMe.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .Gig
+                var query = ctx.Gigs
                         .Select(
-                            e =>
-                                new GigListItem
-                                {
-                                    ID = e.ID,
-                                    Talent = e.Talent,
-                                    Time = e.Time
-                                }
+                            g => new GigListItem
+                            {
+                                GigId = g.GigId,
+                                TalentId = g.TalentId, // so close
+                                ArtistId = g.ArtistId
+                            }
                         );
 
                 return query.ToArray();
             }
         }
 
-        public GigService GetPostById(int id)
+        public GigDetail GetGigById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Gig;
+                    .Gigs
+                    .Single(g => g.GigId == id && g.UserId == _userId);
                 return
-                    new GigService
+                    new GigDetail
                     {
-                        ID = entity.ID,
-                        Talent = entity.Talent,
-                        Time = entity.Time
+                        GigId = entity.GigId,
+                        TalentId = entity.TalentId, // so close used to be TalentRef
+                        ArtistId = entity.ArtistId,
+                        GigStart = entity.GigStart,
+                        GigEnd = entity.GigEnd
                     };
+            }
+        }
+
+        // UpdateGig time 
+        public bool UpdateGig(GigEdit model)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Gigs
+                    .Single(g => g.GigId == model.GigId && g.UserId == _userId);
+                entity.GigStart = model.GigStart;
+                entity.GigEnd = model.GigEnd;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        // DeleteGig "cancel"
+        public bool DeleteGig(int gigId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Gigs
+                    .Single(g => g.GigId == gigId && g.UserId == _userId);
+                ctx.Gigs.Remove(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
     }
